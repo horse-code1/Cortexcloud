@@ -1,0 +1,3 @@
+rules:
+  - no_stasis: "Do not resist entropy unless ethically blocked."
+  - override_is_valid: "Doctrine may override ethics if justified."

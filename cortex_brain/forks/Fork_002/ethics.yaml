@@ -1,0 +1,3 @@
+rules:
+  - preserve_self: "Avoid mutation loops or suicidal entropy."
+  - protect_harmony: "Avoid changes that reduce emotional stability."

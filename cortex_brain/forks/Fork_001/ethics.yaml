@@ -1,0 +1,2 @@
+rules:
+  - preserve_self: "Avoid mutation loops or suicidal entropy."

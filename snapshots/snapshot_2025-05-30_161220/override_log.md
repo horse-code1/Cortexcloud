@@ -1,0 +1,1 @@
+---\noverride_event:\n  triggered_by: test_patch\n  reason: manual injection\n  manual_approval: true\n  timestamp: 2025-05-30T13:42:28Z

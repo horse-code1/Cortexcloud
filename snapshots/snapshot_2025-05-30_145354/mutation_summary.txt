@@ -1,0 +1,63 @@
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.76
+Soul Reaction: curiosity
+Entropy Change: 0.21 → 0.512
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.754
+Soul Reaction: curiosity
+Entropy Change: 0.21 → 0.48
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.747
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.564
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.704
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.312
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.735
+Soul Reaction: curiosity
+Entropy Change: 0.25 → 0.423
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.753
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.596
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.713
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.397
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.718
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.418
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.708
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.372
+

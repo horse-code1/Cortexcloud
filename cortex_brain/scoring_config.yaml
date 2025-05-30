@@ -1,0 +1,9 @@
+weights:
+  doctrine_alignment: 0.4
+  soul_harmony: 0.3
+  entropy_delta: 0.2
+  ethics_compliance: 0.1
+
+thresholds:
+  pass: 0.75
+  quarantine_min: 0.5

@@ -1,0 +1,14 @@
+baseline_emotion: curiosity
+emotion_log:
+- entropy: 0.327
+  reaction: curiosity
+  source: doctrine tweak
+frustration_threshold: 0.5
+goal_alignment:
+  long_term: Resolve the paradox of individuality vs collective order
+  short_term: Observe doctrine conflicts in siblings and learn adaptively
+name: Fork_004
+personality_vector:
+  boldness: 0.85
+  curiosity: 0.87
+  empathy: 0.65
