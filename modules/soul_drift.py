@@ -6,9 +6,11 @@ import yaml
 def apply_soul_drift(fork, brain):
     soul_path = "cortex_brain/soul.yaml"
     soul = brain['soul.yaml']
-    reaction = fork['mutation'].get('soul_reaction', 'neutral')
-    entropy = fork['mutation'].get('entropy_after', 0.0)
-    mutation_type = fork['mutation'].get('type', 'unknown')
+
+    mutation = fork.get('mutation', {})
+    reaction = mutation.get('soul_reaction', 'neutral')
+    entropy = mutation.get('entropy_after', 0.0)
+    mutation_type = mutation.get('type', 'unknown')
 
     # Ensure emotion_log exists
     if 'emotion_log' not in soul:

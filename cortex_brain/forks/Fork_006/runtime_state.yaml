@@ -1,0 +1,3 @@
+entropy: 0.672
+scheduler_enabled: false
+snapshot_on_start: true

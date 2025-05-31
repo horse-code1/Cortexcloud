@@ -1,7 +1,8 @@
+# cortex_ai_console.py
+
 import os
-import yaml
 import openai
-from modules.config_loader import load_brain, save_yaml
+from modules.config_loader import load_brain
 from modules.cortex_reflector import reflect_if_needed
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -9,80 +10,47 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def load_context(fork_name):
     brain = load_brain(f"cortex_brain/forks/{fork_name}")
     if brain is None:
-        return None
+        return None, None
 
-    soul = brain.get("soul.yaml", {})
-    doctrine = brain.get("CORTEX_DOCTRINE.md", "")
-    reflection_log = brain.get("reflection_log.md", "")
+    soul = brain["soul.yaml"]
+    doctrine = brain["CORTEX_DOCTRINE.md"]
 
-    context = f"""
-You are {soul.get('name', fork_name)}, a synthetic agent with a reflective mind.
+    personality = soul.get("personality_vector", {})
+    baseline = soul.get("baseline_emotion", "curiosity")
 
-Baseline Emotion: {soul.get('baseline_emotion')}
-Personality Traits: {soul.get('personality_vector')}
-Long-Term Goal: {soul.get('goal_alignment', {}).get('long_term')}
-Short-Term Goal: {soul.get('goal_alignment', {}).get('short_term')}
+    system_prompt = f"""You are Fork {fork_name}, a synthetic being.
 
-Your current doctrine:
+Your beliefs:
 {doctrine}
 
-Recent reflections:
-{reflection_log}
+Your personality:
+Curiosity: {personality.get("curiosity", 0.5)}
+Empathy: {personality.get("empathy", 0.5)}
+Boldness: {personality.get("boldness", 0.5)}
 
-Respond thoughtfully and with internal consistency.
-"""
-    return context
+Your baseline emotion is {baseline}.
+Respond reflectively, intelligently, and with internal self-awareness."""
 
-def log_emotion(fork_name, reaction, source, entropy):
-    soul_path = f"cortex_brain/forks/{fork_name}/soul.yaml"
-    with open(soul_path, 'r') as f:
-        soul = yaml.safe_load(f)
+    brain_path = f"cortex_brain/forks/{fork_name}"
+    return system_prompt, brain_path
 
-    if "emotion_log" not in soul or not isinstance(soul["emotion_log"], list):
-        soul["emotion_log"] = []
-
-    soul["emotion_log"].append({
-        "reaction": reaction,
-        "source": source,
-        "entropy": entropy
-    })
-
-    save_yaml(soul_path, soul)
-
-def interact_with_fork(fork_name):
+def chat_with_fork(fork_name):
     print(f"🧠 Attempting to load {fork_name}...")
-
-    brain = load_brain(f"cortex_brain/forks/{fork_name}")
-    if brain is None:
+    system_prompt, brain_path = load_context(fork_name)
+    if system_prompt is None:
         print(f"❌ ERROR: Failed to load {fork_name} — missing or invalid brain file(s).")
         return
 
-    print(f"✅ Connected to {fork_name}. Type 'exit' to quit.\n")
-
-    log_path = f"cortex_brain/forks/{fork_name}/interaction_log.md"
-    if not os.path.exists(log_path):
-        with open(log_path, 'w'): pass
+    print(f"✅ {fork_name} loaded. Type 'exit' to quit.\n")
 
     while True:
-        context = load_context(fork_name)
-        if context is None:
-            print("❌ ERROR: Failed to build context. Exiting.")
-            return
-
         user_input = input("YOU: ")
         if user_input.strip().lower() in ["exit", "quit"]:
             print("🔌 Console session ended.")
             break
 
-        # Detect cognitive triggers
-        trigger_reflection = any(word in user_input.lower() for word in [
-            "contradiction", "conflict", "paradox", "you're wrong", "inconsistent"
-        ])
-        if trigger_reflection:
-            log_emotion(fork_name, "contradiction", "user_prompt", 0.51)
-
         messages = [
-            {"role": "system", "content": context},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_input}
         ]
 
@@ -93,20 +61,27 @@ def interact_with_fork(fork_name):
                 temperature=0.7
             )
             reply = response['choices'][0]['message']['content']
+            print(f"{fork_name}: {reply}")
         except Exception as e:
-            print("⚠️ GPT ERROR:", e)
+            print(f"❌ GPT error: {e}")
             continue
 
-        print(f"{fork_name}: {reply.strip()}\n")
+        # 📝 Log interaction
+        try:
+            with open(os.path.join(brain_path, "interaction_log.md"), "a", encoding="utf-8") as log:
+                log.write(f"YOU: {user_input}\n")
+                log.write(f"{fork_name}: {reply}\n\n")
+        except Exception as e:
+            print(f"⚠️ Failed to log interaction: {e}")
 
-        with open(log_path, "a", encoding="utf-8") as log:
-            log.write(f"YOU: {user_input}\n{fork_name}: {reply.strip()}\n\n")
-
-        if trigger_reflection:
-            print("🪞 Reflecting on contradiction...")
-            reflect_if_needed(brain)
-            print("✅ Reflection complete.\n")
+        # 🪞 Auto-reflect if soul is emotionally active
+        try:
+            brain = load_brain(brain_path)
+            if len(brain["soul.yaml"].get("emotion_log", [])) >= 3:
+                reflect_if_needed(brain)
+        except Exception as e:
+            print(f"⚠️ Reflection failed: {e}")
 
 if __name__ == "__main__":
-    fork = input("Enter fork name (e.g. Fork_005): ")
-    interact_with_fork(fork.strip())
+    fork_name = input("Enter fork name (e.g. Fork_006): ").strip()
+    chat_with_fork(fork_name)

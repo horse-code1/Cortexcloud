@@ -1,0 +1,77 @@
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.76
+Soul Reaction: curiosity
+Entropy Change: 0.21 → 0.512
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.754
+Soul Reaction: curiosity
+Entropy Change: 0.21 → 0.48
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.747
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.564
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.704
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.312
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.735
+Soul Reaction: curiosity
+Entropy Change: 0.25 → 0.423
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.753
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.596
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.713
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.397
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.718
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.418
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.708
+Soul Reaction: curiosity
+Entropy Change: 0.33 → 0.372
+
+---
+Type: doctrine tweak
+Proposed: clarify 'freedom vs alignment'
+Score: 0.715
+Soul Reaction: curiosity
+Entropy Change: 0.4 → 0.327
+
+2025-05-30T20:56:27.285759 — Created Fork_006 from Fork_005 — Entropy drift 0.42 → 0.672
+2025-05-30T21:46:11.139876 — Created Fork_007 from Fork_005 — Entropy drift 0.672 → 0.37
+2025-05-30T23:54:16.526093 — Created Fork_008 from Fork_005 — Entropy drift 0.37 → 0.646
+2025-05-30T23:58:47.165504 — Created Fork_009 from Fork_005 — Entropy drift 0.37 → 0.293
+2025-05-31T00:09:50.872208 — Created Fork_010 from Fork_005 — Entropy drift 0.37 → 0.572
+2025-05-31T00:11:11.554799 — Created Fork_011 from Fork_005 — Entropy drift 0.572 → 0.581
+2025-05-31T00:14:44.056377 — Created Fork_012 from Fork_005 — Entropy drift 0.572 → 0.278

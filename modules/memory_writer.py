@@ -1,18 +1,33 @@
 # modules/memory_writer.py
 
 import os
+import yaml
 
 def write_log(fork, brain):
-    log_path = os.path.join("cortex_brain", "mutation_summary.txt")
-    mutation = fork['mutation']
-    score = fork.get('score', 0)
+    # Safe fork name fallback
+    fork_name = fork.get("fork_name") or brain.get("fork_meta.yaml", {}).get("fork_name", "UNKNOWN_FORK")
+    log_path = f"cortex_brain/forks/{fork_name}/mutation_summary.txt"
 
-    with open(log_path, 'a', encoding='utf-8') as log:
-        log.write(f"---\n")
-        log.write(f"Type: {mutation['type']}\n")
-        log.write(f"Proposed: {mutation['proposed_change']}\n")
-        log.write(f"Score: {score}\n")
-        log.write(f"Soul Reaction: {mutation['soul_reaction']}\n")
-        log.write(f"Entropy Change: {mutation['entropy_before']} → {mutation['entropy_after']}\n\n")
+    # Safe mutation fallback
+    mutation = fork.get('mutation', {})
 
-    print(f"📝 Logged fork to mutation_summary.txt")
+    # Ensure directory exists
+    if not os.path.exists(os.path.dirname(log_path)):
+        os.makedirs(os.path.dirname(log_path))
+
+    # Build log entry
+    log_entry = f"""
+Fork: {fork_name}
+Type: {mutation.get('type', 'unknown')}
+Reaction: {mutation.get('soul_reaction', 'none')}
+Entropy Before: {mutation.get('entropy_before', '?')}
+Entropy After: {mutation.get('entropy_after', '?')}
+Source: {mutation.get('proposed_change', 'n/a')}
+----------------------------------------
+"""
+
+    # Write to mutation log
+    with open(log_path, "a", encoding="utf-8") as log:
+        log.write(log_entry.strip() + "\n")
+
+    print("📝 Logged fork to mutation_summary.txt")

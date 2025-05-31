@@ -1,0 +1,8 @@
+parent: Fork_005
+generation: 10
+ancestry:
+- Fork_005
+mutation_reason: scheduled mutation
+entropy_before: 0.37
+entropy_after: 0.572
+soul_reaction: mutation
